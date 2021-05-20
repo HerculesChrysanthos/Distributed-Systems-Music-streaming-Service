@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Spotihy</string>
+    <string name="EnterYourName">Enter your name.</string>
+    <string name="CONTINUE">CONTINUE</string>
+    <string name="Print" />
+    <string name="username" />
+    <string name="artist">Enter artist name.</string>
+    <string name="EmptyUserName">Invalid username. Try again!</string>
+    <string name="SearchSong">Enter song name.</string>
+    <string name="PlayButton">Play</string>
+    <string name="PauseButton">Pause</string>
+    <string name="Label">Now playing: </string>
+    <string name="LastMessage">Thank you!</string>
+</resources>
