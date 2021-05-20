@@ -1,0 +1,42 @@
+Ηρακλής Χρύσανθος - 3170183
+Γιώργος Λεωνιδόπουλος - 3170091
+Στάυρος Σοφρώνης - 3170150
+
+Για το διάβασμα των metadata χρησιμοποιήσαμε το Dataset1.
+Aκόμα υπάρχει το BrokerInfo.txt το οποίο περιέχει τις ip και port των brokers 
+από όπου θα διαβάζονται για πρακτικούς λόγους από τις κλάσεις Publisher και Broker.
+Για να τρέξουν παράλληλα από το intelij ενεργοποιήσαμε την επιλογή allow parallel run.
+Για το cmd ακολουθούμε τα εξής βήματα:
+1. Κάνουμε compile τον Broker σε 3 διαφορετικά τερματικά αφού θέλουμε 3 brokers:
+	javac Broker.java
+
+
+2. Η κλάση Broker στο τρέξιμό της έχει ως argument την ip και port (συγκεκριμενα args[0]=ip και args[1]=port).
+Tρέχουμε ένα από τα παρακάτω σε κάθε τερματικό (το 1ο στο πρώτο τερματικό, το 2ο στο δεύτερο κλπ):
+	java Broker 127.0.0.1 4321
+	java Broker 127.0.0.2 4322
+	java Broker 127.0.0.3 4323
+
+
+3. Σε δύο νέα τερματικά κάνουμε compile την κλάση StoreFiles μαζί με την βιβλιοθήκη mp3agic:
+	javac -cp mp3agic-0.9.1.jar StoreFiles.java
+
+
+4. Στα δύο αυτά τερματικά κάνουμε compile την κλάση Publisher εφόσον χρησιμοποιούμε 2 publishers:
+	javac Publisher.java
+
+
+5.Η κλάση Publisher στο τρέξιμό της έχει ως arguments τον κωδικό για το εύρος γραμμάτων του αντίστοιχου publisher, την ip
+και το port (συγκεκριμένα args[0]=1 για A-L και args[0]=2 για M-Z, args[1]=ip και args[2]=port).
+Στα δύο αυτά τερματικά τρέχουμε τα παρακάτω (το 1ο ένα τερματικό και το 2ο στο άλλο):
+ 	java -cp .;mp3agic-0.9.1.jar Publisher 1 127.0.0.1 4326
+	java -cp .;mp3agic-0.9.1.jar Publisher 2 127.0.0.1 4327
+
+6. Κάνουμε compile την κλάση Consumer:
+	javac Consumer.java
+
+
+7. Η κλάση Consumer στο τρέξιμό της έχει ως arguments την ip, το port και το username 
+(συγκεκριμένα args[0]: ip broker που θα συνδεθεί, args[1]: port broker που θα συνδεθεί, args[2]: username)
+Τέλος, την τρέχουμε με το παρακάτω βάζοντας όπου username ένα όνομα της επιλογής μας:
+	java Consumer 127.0.0.1 4321 username
